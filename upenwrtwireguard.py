@@ -27,9 +27,6 @@ for index, line in enumerate(client_raw.splitlines()):
 #  Client Config
 server_lan = '10.250.1.1/24'
 server_vpn_int_ip = '172.16.254.1/24'
-#server_private_key = 'iP59OzEuprX5E9cvZTSRfk3Y8P/9Ihw70fzTmYIa7GI='
-#server_public_key = 'RMbKFeUVXfSn7Ds6MsBw6AtegRQDDOH+T0+3jiWX9hM='
-#wg_psk = 'sbl4nWmAXiRfxiCFBThMpqFnN+syfwNESrZ6VrMg7dY='
 server_ip = '192.168.0.175'
 server_port = '41253'
 
@@ -39,8 +36,7 @@ client_lan = '10.250.2.1/24'
 client_vpn_int_ip = '172.16.254.2/24'
 client_connection_name = 'vpn'
 client_hostname = 'openwrt-remote'
-#client_private_key = 'qO9zgP71hmC1QHOpZ2NHx+X+s3DzhtGXauE2id5AtUw='
-#client_public_key = 'lEMaIhPbk5EGtxDHfwW0ZETn6fhJOUHKXwweRKV05Ho='
+
 print(f"""First, run the following commands on your wireguard server and client
 =========SERVER=========
 uci set system.@system[0].hostname='{server_hostname}'
@@ -61,6 +57,8 @@ wg genpsk > wgserver.psk
 cat wgserver.key
 cat wgserver.pub
 cat wgserver.psk
+#Get the IP address of your WAN interface or FQDN and replace the server_ip variable
+ifconfig
 
 =========CLIENT=========
 uci set system.@system[0].hostname='{client_hostname}'
